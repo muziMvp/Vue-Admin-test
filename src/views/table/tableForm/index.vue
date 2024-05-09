@@ -82,7 +82,7 @@
               <li class="fee2">{{!isValueNull(item.auditsubRateFp)?'--':item.auditsubRateFp}}</li>
             </ul>
           </div>
-          <!-- ad1 -->
+          <!-- ad1 设计费-->
           <div class="ad1" v-for="(item,index) in audit1" :key="item.auditIdentify">
             <ul class="ad3-tit bg">
               <li class="fee1">施工单位：{{item.auditName}}</li>
@@ -94,8 +94,13 @@
               </li>
             </ul>
             <ul class="ad3-total">
-              <li class="fee0">{{item.expenseTypeName}}</li>
-              <!-- <li></li> -->
+              <!-- <li class="fee0">{{item.expenseTypeName}}</li> -->
+              <li class="fee0">
+                <span>
+                  设计费**
+                </span>
+                <a class="btn-ins" @click="addMore(item)"><img :src="imgs.addIcon" /></a>
+              </li>
               <li class="fee1"><el-input v-model="item.giveMoney" disabled></el-input></li>
               <li class="fee1"><el-input v-model="item.firstMoney" disabled></el-input></li>
               <li class="fee1">
@@ -105,7 +110,16 @@
               <li class="fee2">{{!isValueNull(item.auditsubRate)?'--':item.auditsubRate}}</li>
             </ul>
             <ul class="ad3-detail " v-for="(it,idx) in item.itemCompanyrefDetail" :key="idx">
-              <li class="fee0">{{it.expenseTypeName}}</li>
+              <!-- <li class="fee0">{{it.expenseTypeName}}</li> -->
+              <li class="fee0" v-if="it.detailId!=''&&it.expenseTypeName!=''">
+                <span>
+                  其中：{{it.expenseTypeName}}
+                </span>
+              </li>
+              <li class="fee0" v-if="it.detailId==''">
+                <el-input v-model="it.expenseTypeName" placeholder="其中：自定义" style="width:70%"></el-input>
+                <a class="btn-ins" @click="delMore(item,idx)"><img :src="imgs.delIcon" /></a>
+              </li>
               <li class="fee1"><el-input v-model="it.giveMoney" :disabled="it.detailId!=''" @blur=minusDetail1(it.giveMoney,it.firstMoney,it.auditMoney,index,idx)></el-input></li>
               <li class="fee1"><el-input v-model="it.firstMoney" :disabled="it.detailId!=''" @blur=minusDetail1(it.giveMoney,it.firstMoney,it.auditMoney,index,idx)></el-input></li>
               <li class="fee1">
