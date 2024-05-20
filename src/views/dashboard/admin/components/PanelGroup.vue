@@ -89,6 +89,7 @@ export default {
     &:hover {
       .card-panel-icon-wrapper {
         color: #fff;
+        // color:red;
       }
       .icon-people {
          background: #40c9c6;

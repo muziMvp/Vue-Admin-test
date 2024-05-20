@@ -38,16 +38,26 @@ export default {
   },
   data() {
     return {
-      list: null
+      list: null,
+      age: 300
     }
   },
   created() {
+    console.log('created-0')
     this.fetchData()
+    console.log('created-1' + this.list)
+  },
+  mounted() {
+    console.log('mounted-1' + this.list)
+  },
+  updated() {
+    console.log('updated' + this.list)
   },
   methods: {
     fetchData() {
       transactionList().then(response => {
         this.list = response.data.items.slice(0, 8)
+        console.log(this.list, '子table数据')
       })
     }
   }

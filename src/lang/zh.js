@@ -29,6 +29,7 @@ export default {
     keyboardChart: '键盘图表',
     lineChart: '折线图',
     mixChart: '混合图表',
+    chartCollection: '图标集锦',
     example: '综合实例',
     nested: '路由嵌套',
     menu1: '菜单1',

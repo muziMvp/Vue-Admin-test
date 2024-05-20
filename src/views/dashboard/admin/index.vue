@@ -3,7 +3,10 @@
     <github-corner style="position: absolute; top: 0px; border: 0; right: 0;" />
 
     <panel-group @handleSetLineChartData="handleSetLineChartData" />
+    <el-row style="background:yellowgreen">
+      <h1 ref="parentData">{{ name }}</h1>
 
+    </el-row>
     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
       <line-chart :chart-data="lineChartData" />
     </el-row>
@@ -85,8 +88,47 @@ export default {
   },
   data() {
     return {
-      lineChartData: lineChartData.newVisitis
+      lineChartData: lineChartData.newVisitis,
+      name: 'hahha'
     }
+  },
+  beforeCreate() {
+    console.log('beforeCreate--0' + this.name)
+  },
+  created() {
+    console.log('created--父0' + this.name)
+    // setTimeout异步是最后执行，所以父组件里如果this.name
+    setTimeout(() => {
+      this.name = '你好先生'
+      // await let name1 = this.name
+      console.log('setTimeout' + this.name)
+    }, 1000)
+    console.log('created--父1' + this.name)
+    // this.$nextTick(() => {
+    //   console.log(this.$refs.parentData, 'refsss')
+    // })
+  },
+  beforeMount() {
+    console.log('beforeMount' + this.name)
+  },
+  mounted() {
+    console.log('mounted')
+    setTimeout(() => {
+      this.name = '你好女士'
+      console.log('setTimeout' + this.name)
+    }, 5000)
+  },
+  beforeUpdate() {
+    console.log('beforeUpdate')
+  },
+  updated() {
+    console.log('updated')
+  },
+  beforeDestoroy() {
+    console.log('beforeDestoroy')
+  },
+  destroyed() {
+    console.log('destroyed')
   },
   methods: {
     handleSetLineChartData(type) {

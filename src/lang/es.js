@@ -29,6 +29,7 @@ export default {
     keyboardChart: 'Keyboard Chart',
     lineChart: 'Gráfico de líneas',
     mixChart: 'Mix Chart',
+    chartCollection: 'Chart Collection',
     example: 'Ejemplo',
     nested: 'Rutas anidadass',
     menu1: 'Menu 1',
